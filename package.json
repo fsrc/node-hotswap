@@ -1,12 +1,13 @@
 {
   "author": "Alex Kocharin (rlidwka)",
+  "contributors": ["Fredrik Andersson (fsrc)"],
   "name": "hotswap",
   "description": "Code hotswapping for your node.js modules",
   "version": "1.1.0",
-  "homepage": "https://github.com/rlidwka/node-hotswap",
+  "homepage": "https://github.com/fsrc/node-hotswap",
   "repository": {
     "type": "git",
-    "url": "git://github.com/rlidwka/node-hotswap.git"
+    "url": "git://github.com/fsrc/node-hotswap.git"
   },
   "main": "./hotswap",
   "engines": {

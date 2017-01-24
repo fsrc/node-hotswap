@@ -118,8 +118,9 @@ function try_require_file(filename)
 // require specified file with our handler
 function require_file(filename)
 {
+  var types = { '.coffee': 'coffee', '.ls': 'ls', '.js': 'js' }
 	var ext = path.extname(filename) || '.js';
-	var type = ext == '.coffee' ? 'coffee' : 'js';
+	var type = types[ext]
 	var reg_required = !current_extensions[ext];
 	var result;
 	if (reg_required) register_extension(ext, type);
@@ -213,6 +214,11 @@ function extension_js(type, module, filename)
 
 	if (type == 'coffee') {
 		var compiled = require('coffee-script').compile(content, {
+			filename: filename
+		});
+		module._compile(compiled, filename);
+  } else if (type == 'ls') {
+		var compiled = require('livescript').compile(content, {
 			filename: filename
 		});
 		module._compile(compiled, filename);
@@ -408,7 +414,7 @@ function configure(hash)
 
 // this is configuration by default
 configure({
-	extensions: {'.js': 'js', '.coffee': 'coffee'},
+  extensions: {'.js': 'js', '.coffee': 'coffee', '.ls': 'ls'},
 	watch: true,
 	autoreload: true,
 });
